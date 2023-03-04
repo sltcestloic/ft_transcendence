@@ -6,7 +6,7 @@ services:
 
   transcendence_front:
     container_name: transcendence
-    depends_on: 
+    depends_on:
       - transcendence_back
     build:
       context: ./front
@@ -23,7 +23,8 @@ services:
 # Back
 
   transcendence_back:
-    depends_on: 
+    container_name: transcendence_back
+    depends_on:
       - transcendence_db
     build: ./back
     environment:
@@ -43,12 +44,11 @@ services:
       - TWO_FACTOR_APP_NAME=${TWO_FACTOR_APP_NAME}
       - MAIL_USER=${MAIL_USER}
       - MAIL_PASSWORD=${MAIL_PASSWORD}
-    ports:
-      - 5000:5000
     volumes:
       - ./back/uploads:/usr/app/back/uploads
     networks:
       - transcendence_network
+      - caddy
     restart: always
 
 
