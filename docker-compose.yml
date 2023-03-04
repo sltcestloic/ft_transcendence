@@ -5,6 +5,7 @@ services:
 # Front
 
   transcendence_front:
+    container_name: transcendence
     depends_on: 
       - transcendence_back
     build:
