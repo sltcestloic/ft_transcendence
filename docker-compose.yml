@@ -16,14 +16,8 @@ services:
         - REACT_APP_API42_CLIENT_ID=${API42_CLIENT_ID}
     networks:
       - transcendence_network
-      - proxy
+      - caddy
     restart: always
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=proxy"
-      - "traefik.http.routers.lessgofront.rule=Host(`www.transcendance.site`, `transcendance.site`)"
-      - "traefik.http.routers.lessgofront.entrypoints=websecure"
-      - "traefik.http.services.lessgofront.loadbalancer.server.port=3000"
 
 # Back
 
@@ -87,5 +81,5 @@ networks:
   transcendence_network:
     name: transcendence_network
     driver: bridge
-  proxy:
+  caddy:
     external: true
